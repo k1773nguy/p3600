@@ -6,12 +6,14 @@ p3600 = {
         width = 800,
         height = 600,
     },
+    font = {},
 }
 
 p3600.push_state = function()
     p3600.state_stack = {
         draw          = p3600.draw,
         focus         = p3600.focus,
+        font          = p3600.font,
         keypressed    = p3600.keypressed,
         keyreleased   = p3600.keyreleased,
         mousepressed  = p3600.mousepressed,
@@ -27,6 +29,7 @@ end
 p3600.pop_state = function()
     p3600.draw          = p3600.state_stack.draw
     p3600.focus         = p3600.state_stack.focus
+    p3600.font          = p3600.state_stack.font
     p3600.keypressed    = p3600.state_stack.keypressed
     p3600.keyreleased   = p3600.state_stack.keyreleased
     p3600.mousepressed  = p3600.state_stack.mousepressed
@@ -36,6 +39,8 @@ p3600.pop_state = function()
     p3600.state         = p3600.state_stack.state
     p3600.state_stack   = p3600.state_stack.state_stack
     p3600.update        = p3600.state_stack.update
+
+    love.graphics.setFont(p3600.font)
 end
 
 p3600.clear_love_callbacks = function()
@@ -116,4 +121,8 @@ end
 
 function p3600.init()
     p3600.display.buffer = love.graphics.newCanvas(800, 600, 'rgb5a1', 0)
+    p3600.font = love.graphics.newImageFont('/data/font.tga',
+    ' 1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`~!@#$%^'..
+    '&*()-_=+[{]}\\|;:\'",<.>/?', -1)
+    love.graphics.setFont(p3600.font)
 end
