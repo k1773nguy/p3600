@@ -15,13 +15,10 @@ directories:
 
 all: $(files)
 
-p3600.love: p3600.zip
-	$(CP) p3600.zip p3600.love
+p3600.love: $(files)
+	$(MAKE) -C p3600 -f ../Makefile ../p3600.love
 
-p3600.zip: $(files)
-	$(MAKE) -C p3600 -f ../Makefile ../p3600.zip
-
-../p3600.zip:
-	$(ZIP) ../p3600.zip -r * -x .gitignore
+../p3600.love:
+	$(ZIP) ../p3600.love -r * -x .gitignore
 
 .PHONY: all directories

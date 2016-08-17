@@ -4,12 +4,15 @@ return function(save_state, items)
     end
 
     p3600.state = {
-        selection = 0,
+        selection  = 0,
+        menu_items = items,
+        changed = true,
     }
 
     p3600.clear_love_callbacks()
 
-    love.keypressed = function(key)
+    p3600.keypressed = function(key)
+        p3600.state.changed = true
         local tbl = {
             ['up'] = function()
             end,
@@ -19,6 +22,11 @@ return function(save_state, items)
         end
     end
 
-    love.draw = function()
+    p3600.draw = function()
+        if (p3600.state.changed) then
+            love.graphics.clear()
+            love.graphics.print("Hello World", 400, 300)
+            p3600.state.changed = false
+        end
     end
 end
