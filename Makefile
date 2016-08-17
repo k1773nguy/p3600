@@ -1,7 +1,7 @@
 all:
 
 MKDIR ?= mkdir -p
-CP    ?= ln -f
+CP    ?= cp -f
 ZIP   ?= zip -9 -u -v
 
 dirs  := $(patsubst src/%,p3600/%,$(shell find src -type d))

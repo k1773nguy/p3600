@@ -118,11 +118,10 @@ function love.update(dt)
     p3600.update(dt)
 end
 
-
 function p3600.init()
     p3600.display.buffer = love.graphics.newCanvas(800, 600, 'rgb5a1', 0)
     p3600.font = love.graphics.newImageFont('/data/font.tga',
     ' 1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`~!@#$%^'..
-    '&*()-_=+[{]}\\|;:\'",<.>/?', -1)
+    '&*()-_=+[{]}\\|;:\'",<.>/?', 0)
     love.graphics.setFont(p3600.font)
 end
