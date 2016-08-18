@@ -3,6 +3,7 @@ p3600 = {
   state_stack = {},
   display = {
     buffer = {},
+    changed = true,
     width = 800,
     height = 600,
   },
@@ -48,6 +49,8 @@ p3600.pop_state = function()
   p3600.state_stack   = p3600.state_stack.state_stack
 
   love.graphics.setFont(p3600.font)
+
+  p3600.display.changed = true
 end
 
 p3600.clear_love_callbacks = function()
@@ -79,18 +82,22 @@ function love.draw()
   love.graphics.setCanvas(p3600.display.buffer)
   p3600.draw()
   love.graphics.setCanvas()
-  local ratio_w = p3600.display.width / 800
-  local ratio_h = p3600.display.height / 600
-  local ratio = 0
-  if (ratio_w < ratio_h) then
-    ratio = ratio_w
-  else
-    ratio = ratio_h
+  if (p3600.display.changed) then
+    love.graphics.clear(love.graphics.getBackgroundColor())
+    local ratio_w = p3600.display.width / 800
+    local ratio_h = p3600.display.height / 600
+    local ratio = 0
+    if (ratio_w < ratio_h) then
+      ratio = ratio_w
+    else
+      ratio = ratio_h
+    end
+    love.graphics.translate((p3600.display.width  / 2) - ((800 * ratio) / 2),
+                            (p3600.display.height / 2) - ((600 * ratio) / 2))
+    love.graphics.scale(ratio)
+    love.graphics.draw(p3600.display.buffer)
+    -- p3600.display.changed is set to false in love.run
   end
-  love.graphics.translate((p3600.display.width  / 2) - ((800 * ratio) / 2),
-                          (p3600.display.height / 2) - ((600 * ratio) / 2))
-  love.graphics.scale(ratio)
-  love.graphics.draw(p3600.display.buffer)
 end
 
 function love.focus(f)
@@ -121,6 +128,7 @@ function love.resize(w, h)
   p3600.display.width = w
   p3600.display.height = h
   p3600.resize(w, h)
+  p3600.display.changed = true
 end
 
 function love.textinput(text)

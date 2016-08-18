@@ -93,7 +93,7 @@ function p3600.display.menu(save_state, items)
   end
 
   p3600.draw = function()
-    if (p3600.state.changed) then
+    if (p3600.state.changed) or (p3600.display.changed) then
       love.graphics.clear()
 
       love.graphics.setColor(255, 255, 255, 255)
@@ -117,6 +117,7 @@ function p3600.display.menu(save_state, items)
       end
 
       p3600.state.changed = false
+      p3600.display.changed = true
     end
   end
 end

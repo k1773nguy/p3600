@@ -62,12 +62,13 @@ function p3600.display.text_input(line, column, setstr, initial_string)
   end
 
   p3600.draw = function()
-    if (p3600.text_input_buffer_changed) then
+    if (p3600.text_input_buffer_changed) or (p3600.display.changed) then
       love.graphics.clear()
       love.graphics.draw(p3600.text_input_old_buffer)
       p3600.display.print(p3600.text_input_r, p3600.text_input_c,
                           p3600.text_input_buffer)
       p3600.text_input_buffer_changed = false
+      p3600.display.changed = true
     end
   end
 
