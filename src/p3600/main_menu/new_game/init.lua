@@ -3,7 +3,8 @@ require 'p3600.display.menu'
 require 'p3600.display.text_input'
 
 return function()
-  p3600.display.menu(true, {
+  p3600.push_state()
+  p3600.display.menu({
     init = function()
       p3600.state.name = ''
     end,
@@ -18,7 +19,6 @@ return function()
         end
         p3600.display.text_input(17, 10, setname, p3600.state.name,
                                  {r = 0, b = 0, g = 0})
-        return false
       end,
     },
 
@@ -29,17 +29,27 @@ return function()
     [3] = {
       label = 'Wake up...',
       action = function()
-        -- TODO
-        return true
+        p3600.state_stack.state.new_game.start = true
+        p3600.gstate = {
+          entity = {
+            [0] = {
+              name = p3600.state.name,
+              pos = {
+                x = 11,
+                y = 11,
+              },
+            },
+          },
+        }
+        p3600.pop_state()
       end,
     },
 
     [4] = {
       label = 'Keep sleeping (abort)',
       action = function()
-        return true
+        p3600.pop_state()
       end,
     },
   })
-  return false
 end

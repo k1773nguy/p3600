@@ -3,13 +3,7 @@ require 'p3600.display.print'
 
 p3600.display._menu = {}
 
--- TODO: if save_state, make a new canvas for the menu and overlay with a
--- transparent background
-function p3600.display.menu(save_state, items)
-  if (save_state) then
-    p3600.push_state()
-  end
-
+function p3600.display.menu(items)
   p3600.slowness = 0.1
   love.keyboard.setTextInput(false)
 
@@ -17,7 +11,6 @@ function p3600.display.menu(save_state, items)
     selection  = 0,
     menu_items = items,
     changed = true,
-    return_after = save_state,
     onreturn = items.onreturn,
     do_onreturn = false,
   }
@@ -73,11 +66,7 @@ function p3600.display.menu(save_state, items)
       ['return'] = function()
         p3600.state.changed = true
         p3600.state.do_onreturn = true
-        if (p3600.state.menu_items[p3600.state.selection].action()) then
-          if (p3600.state.return_after) then
-            p3600.pop_state()
-          end
-        end
+        p3600.state.menu_items[p3600.state.selection].action()
       end,
     }
     if not (tbl[key] == nil) then

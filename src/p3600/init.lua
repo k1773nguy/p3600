@@ -11,7 +11,7 @@ p3600 = {
   font = {},
 }
 
-p3600.push_state = function()
+function p3600.push_state()
   p3600.state_stack = {
     draw          = p3600.draw,
     focus         = p3600.focus,
@@ -32,7 +32,7 @@ p3600.push_state = function()
   }
 end
 
-p3600.pop_state = function()
+function p3600.pop_state()
   p3600.draw          = p3600.state_stack.draw
   p3600.focus         = p3600.state_stack.focus
   p3600.font          = p3600.state_stack.font
@@ -56,7 +56,32 @@ p3600.pop_state = function()
   p3600.display.changed = true
 end
 
-p3600.clear_love_callbacks = function()
+function p3600.init_state_stack()
+  local endf = function()
+    love.event.quit(0)
+  end
+
+  p3600.state_stack = {
+    draw          = endf,
+    focus         = endf,
+    font          = p3600.font,
+    has_textinput = false,
+    keypressed    = endf,
+    keyreleased   = endf,
+    mousepressed  = endf,
+    mousereleased = endf,
+    quit          = function()
+    end,
+    resize        = endf,
+    slowness      = 0.1,
+    state         = {},
+    textinput     = endf,
+    update        = endf,
+    state_stack   = nil,
+  }
+end
+
+function p3600.clear_love_callbacks()
   p3600.draw = function()
   end
   p3600.focus = function(f)
@@ -149,4 +174,5 @@ function p3600.init()
   '&*()-_=+[{]}\\|;:\'",<.>/?', 0)
   love.graphics.setFont(p3600.font)
   love.keyboard.setTextInput(false)
+  p3600.init_state_stack()
 end

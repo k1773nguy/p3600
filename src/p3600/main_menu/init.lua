@@ -1,6 +1,6 @@
 require 'p3600'
 
-p3600.display.menu(false, {
+p3600.display.menu({
   init = function()
     p3600.state.new_game = {
       start = false,
@@ -9,6 +9,9 @@ p3600.display.menu(false, {
 
   onreturn = function()
     if (p3600.state.new_game.start) then
+      p3600.init_state_stack()
+      p3600.clear_love_callbacks()
+      require('p3600.transition.intro')()
     end
   end,
 
@@ -20,15 +23,13 @@ p3600.display.menu(false, {
   [1] = {
     label = 'Load Game',
     action = function()
-      return false
     end,
   },
 
   [2] = {
     label = 'Exit',
     action = function()
-      love.event.quit(0)
-      return true
+      p3600.pop_state()
     end,
   },
 })
