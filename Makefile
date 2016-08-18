@@ -1,14 +1,14 @@
 all:
 
-MKDIR ?= mkdir -p
-CP    ?= cp -f
-ZIP   ?= zip -9 -u -v
+MKDIR  ?= mkdir -p
+LUAJIT ?= luajit -O -bs
+ZIP    ?= zip -9 -u -v
 
 dirs  := $(patsubst src/%,p3600/%,$(shell find src -type d))
 files := $(patsubst src/%,p3600/%,$(shell find src -name "*.lua"))
 
 p3600/%.lua: src/%.lua directories
-	$(CP) $< $@
+	$(LUAJIT) $< $@
 
 directories:
 	$(MKDIR) $(dirs)
