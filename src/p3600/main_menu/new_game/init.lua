@@ -22,9 +22,11 @@ return function()
       end,
     },
 
-    [1] = 'All done?',
+    [1] = '',
 
-    [2] = {
+    [2] = 'All done?',
+
+    [3] = {
       label = 'Wake up...',
       action = function()
         -- TODO
@@ -32,7 +34,7 @@ return function()
       end,
     },
 
-    [3] = {
+    [4] = {
       label = 'Keep sleeping (abort)',
       action = function()
         return true

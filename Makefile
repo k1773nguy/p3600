@@ -7,11 +7,11 @@ ZIP    ?= zip -9 -u -v
 dirs  := $(patsubst src/%,p3600/%,$(shell find src -type d))
 files := $(patsubst src/%,p3600/%,$(shell find src -name "*.lua"))
 
-p3600/%.lua: src/%.lua directories
+p3600/%.lua: src/%.lua $(dirs)
 	$(LUAJIT) $< $@
 
-directories:
-	$(MKDIR) $(dirs)
+$(dirs):
+	$(MKDIR) $@
 
 all: $(files)
 
@@ -21,4 +21,4 @@ p3600.love: $(files)
 ../p3600.love:
 	$(ZIP) ../p3600.love -r * -x .gitignore
 
-.PHONY: all directories
+.PHONY: all
