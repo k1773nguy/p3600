@@ -58,7 +58,7 @@ function love.run()
     end
 
     if love.timer then
-      love.timer.sleep(0.001)
+      love.timer.sleep(p3600.slowness)
     end
   end
 end

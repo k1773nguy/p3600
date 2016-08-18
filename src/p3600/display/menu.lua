@@ -10,6 +10,7 @@ function p3600.display.menu(save_state, items)
     p3600.push_state()
   end
 
+  p3600.slowness = 0.1
   love.keyboard.setTextInput(false)
 
   p3600.state = {
@@ -88,8 +89,6 @@ function p3600.display.menu(save_state, items)
     if (p3600.state.do_onreturn) and (not (p3600.state.onreturn == nil)) then
       p3600.state.onreturn()
     end
-
-    love.timer.sleep(0.05) -- not much happening
   end
 
   p3600.draw = function()

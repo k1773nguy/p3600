@@ -11,6 +11,7 @@ Uses p3600.{push,pop}_state to change love callbacks only.
 ]]
 function p3600.display.text_input(line, column, setstr, initial_string)
   p3600.push_state()
+  p3600.slowness = 0.1
   p3600.clear_love_callbacks()
 
   p3600.text_input_r = line
@@ -70,9 +71,5 @@ function p3600.display.text_input(line, column, setstr, initial_string)
       p3600.text_input_buffer_changed = false
       p3600.display.changed = true
     end
-  end
-
-  p3600.update = function(dt)
-    love.timer.sleep(0.05)
   end
 end
