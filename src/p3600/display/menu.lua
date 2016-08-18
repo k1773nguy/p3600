@@ -33,7 +33,7 @@ function p3600.display.menu(save_state, items)
   p3600.clear_love_callbacks()
 
   -- XXX: if a menu is declared with only seperators, behavior is undefined
-  while (type(p3600.state.menu_items[p3600.state.selection]) == "string") do
+  while not (type(p3600.state.menu_items[p3600.state.selection]) == 'table') do
     p3600.state.selection = p3600.state.selection + 1
   end
 
@@ -45,8 +45,8 @@ function p3600.display.menu(save_state, items)
           p3600.state.changed = true
           repeat
             p3600.state.selection = p3600.state.selection - 1
-          until ((not (type(p3600.state.menu_items[p3600.state.selection])
-                       == 'string')) or (p3600.state.selection < 0))
+          until ((type(p3600.state.menu_items[p3600.state.selection])
+                  == 'table') or (p3600.state.selection < 0))
           if (p3600.state.selection < 0) then
               p3600.state.changed = false
               p3600.state.selection = prev_selection
@@ -60,8 +60,8 @@ function p3600.display.menu(save_state, items)
           p3600.state.changed = true
           repeat
             p3600.state.selection = p3600.state.selection + 1
-          until ((not (type(p3600.state.menu_items[p3600.state.selection])
-                       == 'string')) or
+          until ((type(p3600.state.menu_items[p3600.state.selection])
+                  == 'table') or
                  (p3600.state.selection > #p3600.state.menu_items))
           if (p3600.state.selection > #p3600.state.menu_items) then
               p3600.state.changed = false
@@ -99,18 +99,30 @@ function p3600.display.menu(save_state, items)
       for i = 0, #p3600.state.menu_items, 1 do
         if not (type(p3600.state.menu_items[i]) == 'table') then
           love.graphics.setColor(200, 200, 200, 255)
-          p3600.display.print(17 + i, 1, p3600.state.menu_items[i])
+          if (type(p3600.state.menu_items[i]) == 'function') then
+            p3600.display.print(17 + i, 1, p3600.state.menu_items[i]())
+          else
+            p3600.display.print(17 + i, 1, p3600.state.menu_items[i])
+          end
           love.graphics.setColor(255, 255, 255, 255)
         else
           if (i == p3600.state.selection) then
             love.graphics.setColor(255, 0, 0, 255)
-            p3600.display.print(17 + i, 4, p3600.state.menu_items[i].label)
+            if (type(p3600.state.menu_items[i].label) == 'function') then
+              p3600.display.print(17 + i, 4, p3600.state.menu_items[i].label())
+            else
+              p3600.display.print(17 + i, 4, p3600.state.menu_items[i].label)
+            end
             love.graphics.setColor(255, 255, 255, 255)
 
             love.graphics.draw(p3600.display._menu.cursor, 2 * 16,
                                (17 + i) * 16)
           else
-            p3600.display.print(17 + i, 4, p3600.state.menu_items[i].label)
+            if (type(p3600.state.menu_items[i].label) == 'function') then
+              p3600.display.print(17 + i, 4, p3600.state.menu_items[i].label())
+            else
+              p3600.display.print(17 + i, 4, p3600.state.menu_items[i].label)
+            end
           end
         end
       end

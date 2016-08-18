@@ -9,12 +9,15 @@ return function()
     end,
 
     [0] = {
-      label = 'Name:',
+      label = function()
+        return 'Name: '..p3600.state.name
+      end,
       action = function()
         local setname = function(str)
           p3600.state.name = str
         end
-        p3600.display.text_input(17, 10, setname, p3600.state.name)
+        p3600.display.text_input(17, 10, setname, p3600.state.name,
+                                 {r = 0, b = 0, g = 0})
         return false
       end,
     },
