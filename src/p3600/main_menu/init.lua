@@ -1,4 +1,6 @@
-p3600.make_menu(false, {
+require 'p3600'
+
+p3600.display.menu(false, {
   init = function()
     p3600.state.new_game = {
       start = false,
@@ -12,7 +14,7 @@ p3600.make_menu(false, {
 
   [0] = {
     label = 'New Game',
-    action = require('p3600.new_game'),
+    action = require('p3600.main_menu.new_game'),
   },
 
   [1] = {

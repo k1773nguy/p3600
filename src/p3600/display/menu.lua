@@ -1,14 +1,16 @@
 require 'p3600'
 require 'p3600.display.print'
 
-p3600.menu = {}
+p3600.display._menu = {}
 
 -- TODO: if save_state, make a new canvas for the menu and overlay with a
 -- transparent background
-function p3600.make_menu(save_state, items)
+function p3600.display.menu(save_state, items)
   if (save_state) then
     p3600.push_state()
   end
+
+  love.keyboard.setTextInput(false)
 
   p3600.state = {
     selection  = 0,
@@ -23,8 +25,8 @@ function p3600.make_menu(save_state, items)
     items.init()
   end
 
-  if (p3600.menu.cursor == nil) then
-    p3600.menu.cursor = love.graphics.newImage('/data/menu/cursor.tga')
+  if (p3600.display._menu.cursor == nil) then
+    p3600.display._menu.cursor = love.graphics.newImage('/data/menu/cursor.tga')
   end
 
   p3600.clear_love_callbacks()
@@ -83,7 +85,7 @@ function p3600.make_menu(save_state, items)
   end
 
   p3600.update = function(dt)
-    if (p3600.state.do_onreturn) then
+    if (p3600.state.do_onreturn) and (not (p3600.state.onreturn == nil)) then
       p3600.state.onreturn()
     end
 
@@ -106,7 +108,8 @@ function p3600.make_menu(save_state, items)
             p3600.display.print(17 + i, 4, p3600.state.menu_items[i].label)
             love.graphics.setColor(255, 255, 255, 255)
 
-            love.graphics.draw(p3600.menu.cursor, 2 * 16, (17 + i) * 16)
+            love.graphics.draw(p3600.display._menu.cursor, 2 * 16,
+                               (17 + i) * 16)
           else
             p3600.display.print(17 + i, 4, p3600.state.menu_items[i].label)
           end
