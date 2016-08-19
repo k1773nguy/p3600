@@ -10,7 +10,6 @@ p3600.display.menu({
   onreturn = function()
     if (p3600.state.new_game.start) then
       p3600.init_state_stack()
-      p3600.clear_love_callbacks()
       require('p3600.transition.intro')()
     end
   end,

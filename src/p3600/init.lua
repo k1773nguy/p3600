@@ -130,6 +130,9 @@ end
 
 function love.focus(f)
   p3600.focus(f)
+  if (f) then
+    p3600.display.changed = true
+  end
 end
 
 function love.keypressed(key)
