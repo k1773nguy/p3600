@@ -14,9 +14,13 @@ return function(init) -- init is only true if called from intro
     changed = true,
   }
 
+  p3600.gstate.entity[0].pos.area = 'clearing'
+
   p3600.keypressed = function(key)
     local tbl = {
       ['pause'] = function()
+        p3600.state.changed = true
+        require('p3600.pause')(true)
       end,
     }
 
