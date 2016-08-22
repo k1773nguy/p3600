@@ -124,7 +124,6 @@ function love.draw()
                             (p3600.display.height / 2) - ((600 * ratio) / 2))
     love.graphics.scale(ratio)
     love.graphics.draw(p3600.display.buffer)
-    -- p3600.display.changed is set to false in love.run
   end
 end
 

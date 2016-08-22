@@ -1,10 +1,8 @@
 require 'p3600'
-require 'p3600.display.menu'
-require 'p3600.display.text_input'
 
 return function()
   p3600.push_state()
-  p3600.display.menu({
+  require('p3600.display.menu')({
     init = function()
       p3600.state.r = require('p3600.race')
       p3600.state.name = ''
@@ -23,8 +21,8 @@ return function()
         local setname = function(str)
           p3600.state.name = str
         end
-        p3600.display.text_input(17, 10, setname, p3600.state.name,
-                                 {r = 0, b = 0, g = 0})
+        require('p3600.display.text_input')(17, 10, setname, p3600.state.name,
+                                            {r = 0, b = 0, g = 0})
       end,
     },
 

@@ -1,7 +1,8 @@
 require 'p3600'
-require 'p3600.display.spq'
 
-function p3600.display.make_map(mapdata)
+return function(mapdata)
+  local spq = require('p3600.display.spq')
+
   local map = {
     width = mapdata.width,
     height = mapdata.height,
@@ -32,13 +33,11 @@ function p3600.display.make_map(mapdata)
     for x = 1, map.width, 1 do
       for y = 1, map.height, 1 do
         if (quads[mapdata.bg.data[y][x]] == nil) then
-          quads[mapdata.bg.data[y][x]] =
-           p3600.display.spq(mapdata.bg.data[y][x])
+          quads[mapdata.bg.data[y][x]] = spq(mapdata.bg.data[y][x])
         end
         map.bg:add(quads[mapdata.bg.data[y][x]], x * 16, y * 16)
         if (quads[mapdata.fg.data[y][x]] == nil) then
-          quads[mapdata.fg.data[y][x]] =
-           p3600.display.spq(mapdata.fg.data[y][x])
+          quads[mapdata.fg.data[y][x]] = spq(mapdata.fg.data[y][x])
         end
         map.fg:add(quads[mapdata.fg.data[y][x]], x * 16, y * 16)
       end

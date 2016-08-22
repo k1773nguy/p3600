@@ -1,10 +1,8 @@
-require 'p3600'
-
 --[[
 Returns a Quad for sprite (id) on a spritesheet.
 If a sprite takes up more than one index, specify (h) and (w).
 ]]
-function p3600.display.spq(id, h, w)
+return function(id, h, w)
   h = h or 1
   w = w or h
   local row = math.floor(id / 16)

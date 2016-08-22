@@ -52,9 +52,9 @@ return function()
   p3600.draw = function()
     if (p3600.state.changed) then
       love.graphics.clear()
-      p3600.display.print(1, 3,
-                          'Race: '..p3600.state.r[p3600.state.race].singular)
-      p3600.display.print(3, 1, p3600.state.r[p3600.state.race].description)
+      local p = require('p3600.display.print')
+      p(1, 3, 'Race: '..p3600.state.r[p3600.state.race].singular)
+      p(3, 1, p3600.state.r[p3600.state.race].description)
       p3600.display.changed = true
       p3600.state.changed = false
     end

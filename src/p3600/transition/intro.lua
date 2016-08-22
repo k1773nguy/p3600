@@ -30,7 +30,8 @@ return function()
   p3600.draw = function()
     if not (p3600.state.frame == p3600.state.prev_frame) then
       love.graphics.clear(love.graphics.getBackgroundColor())
-      p3600.display.print(8, 1, 'frame #'..tostring(p3600.state.frame))
+      require('p3600.display.print')(8, 1,
+                                     'frame #'..tostring(p3600.state.frame))
       p3600.display.changed = true
       p3600.state.prev_frame = p3600.state.frame
     end

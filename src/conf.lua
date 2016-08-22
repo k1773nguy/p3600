@@ -1,19 +1,15 @@
 function love.conf(t)
   t.p3600 = {
     keybinds = {
-      world = {
-        ['up']     = 'up',
-        ['down']   = 'down',
-        ['left']   = 'left',
-        ['right']  = 'right',
+      world = { -- only one of each
         ['w']      = 'up',
-        ['d']      = 'down',
+        ['s']      = 'down',
         ['a']      = 'left',
-        ['s']      = 'right',
+        ['d']      = 'right',
         ['escape'] = 'pause',
       },
 
-      menu = {
+      menu = { -- can have multiple
         ['up']     = 'up',
         ['down']   = 'down',
         ['left']   = 'left',

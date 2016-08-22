@@ -9,7 +9,7 @@ If initial_string is passed, that is what the buffer starts with.
 Does not modify the state. (setstr can modify the current state)
 Uses p3600.{push,pop}_state to change love callbacks only.
 ]]
-function p3600.display.text_input(line, column, setstr, initial_string, bg)
+return function(line, column, setstr, initial_string, bg)
   p3600.push_state()
   p3600.slowness = 0.1
   p3600.clear_love_callbacks()
@@ -89,7 +89,7 @@ function p3600.display.text_input(line, column, setstr, initial_string, bg)
   end
 
   p3600.draw = function()
-    if (p3600.text_input_buffer_changed) or (p3600.display.changed) then
+    if (p3600.text_input_buffer_changed) then
       love.graphics.clear()
       love.graphics.draw(p3600.text_input_old_buffer)
       if not (p3600.text_input_bg == nil) then
@@ -101,8 +101,8 @@ function p3600.display.text_input(line, column, setstr, initial_string, bg)
                                 p3600.text_input_buffer_max_sz * 16, 16)
         love.graphics.setColor(r, g, b, a)
       end
-      p3600.display.print(p3600.text_input_r, p3600.text_input_c,
-                          p3600.text_input_buffer)
+      require('p3600.display.print')(p3600.text_input_r, p3600.text_input_c,
+                                     p3600.text_input_buffer)
       p3600.text_input_buffer_changed = false
       p3600.display.changed = true
     end

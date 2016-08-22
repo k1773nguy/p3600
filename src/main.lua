@@ -1,5 +1,4 @@
 require 'p3600'
-require 'p3600.display.menu'
 
 function love.load()
   p3600.init()
@@ -15,7 +14,7 @@ function love.load()
     }
   end
 
-  require('p3600.main_menu')
+  require('p3600.main_menu')()
 end
 
 function love.run()
