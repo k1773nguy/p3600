@@ -13,6 +13,7 @@ function p3600.display.menu(items)
     changed = true,
     onreturn = items.onreturn,
     do_onreturn = false,
+    back = items.back,
   }
 
   if not (items.init == nil) then
@@ -63,14 +64,25 @@ function p3600.display.menu(items)
         end
       end,
 
-      ['return'] = function()
+      ['select'] = function()
         p3600.state.changed = true
         p3600.state.do_onreturn = true
         p3600.state.menu_items[p3600.state.selection].action()
       end,
+
+      ['back'] = function()
+        if not (p3600.state.back == nil) then
+          p3600.state.changed = true
+          p3600.state.back()
+        end
+      end,
     }
-    if not (tbl[key] == nil) then
-      tbl[key]()
+    tbl['left'] = tbl['back']
+    tbl['right'] = tbl['select']
+    if not (p3600.kb.m[key] == nil) then
+      if not (tbl[p3600.kb.m[key]] == nil) then
+        tbl[p3600.kb.m[key]]()
+      end
     end
   end
 

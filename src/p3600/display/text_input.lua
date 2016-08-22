@@ -17,6 +17,7 @@ function p3600.display.text_input(line, column, setstr, initial_string, bg)
   p3600.text_input_r = line
   p3600.text_input_c = column
   p3600.text_input_bg = bg
+  p3600.text_input_is = initial_string or ''
   p3600.text_input_buffer = initial_string or ''
   p3600.text_input_buffer_changed = true
   p3600.text_input_buffer_max_sz = #p3600.text_input_buffer
@@ -51,6 +52,7 @@ function p3600.display.text_input(line, column, setstr, initial_string, bg)
         p3600.text_input_setstr(p3600.text_input_buffer)
 
         p3600.text_input_r = nil
+        p3600.text_input_is = nil
         p3600.text_input_c = nil
         p3600.text_input_buffer = nil
         p3600.text_input_buffer_changed = nil
@@ -59,6 +61,23 @@ function p3600.display.text_input(line, column, setstr, initial_string, bg)
         p3600.text_input_bg = nil
         p3600.text_input_buffer_max_sz = nil
 
+        local s = p3600.state
+        p3600.pop_state()
+        p3600.state = s
+      end,
+
+      ['escape'] = function()
+        p3600.display.buffer = p3600.text_input_old_buffer
+        p3600.text_input_setstr(p3600.text_input_is)
+        p3600.text_input_is = nil
+        p3600.text_input_r = nil
+        p3600.text_input_c = nil
+        p3600.text_input_buffer = nil
+        p3600.text_input_buffer_changed = nil
+        p3600.text_input_setstr = nil
+        p3600.text_input_old_buffer = nil
+        p3600.text_input_bg = nil
+        p3600.text_input_buffer_max_sz = nil
         local s = p3600.state
         p3600.pop_state()
         p3600.state = s

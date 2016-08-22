@@ -11,6 +11,10 @@ return function()
       p3600.state.race = 0
     end,
 
+    back = function()
+      p3600.pop_state()
+    end,
+
     [0] = {
       label = function()
         return 'Name: '..p3600.state.name

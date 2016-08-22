@@ -4,6 +4,17 @@ require 'p3600.display.menu'
 function love.load()
   p3600.init()
 
+  do
+    local t = {}
+    t.modules = {}
+    t.window = {}
+    love.conf(t)
+    p3600.kb = {
+      w = t.p3600.keybinds.world,
+      m = t.p3600.keybinds.menu,
+    }
+  end
+
   require('p3600.main_menu')
 end
 

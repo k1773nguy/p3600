@@ -33,17 +33,19 @@ return function()
         p3600.state.changed = true
       end,
 
-      ['return'] = function()
+      ['select'] = function()
         p3600.state_stack.state.race = p3600.state.race
         p3600.pop_state()
       end,
 
-      ['escape'] = function()
+      ['back'] = function()
         p3600.pop_state()
       end,
     }
-    if not (tbl[key] == nil) then
-      tbl[key]()
+    if not (p3600.kb.m[key] == nil) then
+      if not (tbl[p3600.kb.m[key]] == nil) then
+        tbl[p3600.kb.m[key]]()
+      end
     end
   end
 

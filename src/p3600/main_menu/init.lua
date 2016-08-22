@@ -14,6 +14,10 @@ p3600.display.menu({
     end
   end,
 
+  back = function()
+    p3600.pop_state()
+  end,
+
   [0] = {
     label = 'New Game',
     action = require('p3600.main_menu.new_game'),
