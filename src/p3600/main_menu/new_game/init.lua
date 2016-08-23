@@ -46,10 +46,14 @@ return function()
             [0] = {
               name = p3600.state.name,
               race = p3600.state.race,
+              sex = 1,
               pos = {
-                x = 12,
-                y = 13,
+                x = 11,
+                y = 12,
               },
+              dir = 1,
+              lying = true,
+              can_move = false,
             },
           },
         }

@@ -9,6 +9,7 @@ p3600 = {
     height = 600,
   },
   font = {},
+  sprite_refs = {},
 }
 
 function p3600.push_state()
@@ -33,6 +34,10 @@ function p3600.push_state()
 end
 
 function p3600.pop_state()
+  if not (p3600.state._sprites_used == nil) then
+    require('p3600.unuse_sprites')()
+  end
+
   p3600.draw          = p3600.state_stack.draw
   p3600.focus         = p3600.state_stack.focus
   p3600.font          = p3600.state_stack.font

@@ -35,11 +35,11 @@ return function(mapdata)
         if (quads[mapdata.bg.data[y][x]] == nil) then
           quads[mapdata.bg.data[y][x]] = spq(mapdata.bg.data[y][x])
         end
-        map.bg:add(quads[mapdata.bg.data[y][x]], x * 16, y * 16)
+        map.bg:add(quads[mapdata.bg.data[y][x]], (x - 1) * 32, (y - 1) * 32)
         if (quads[mapdata.fg.data[y][x]] == nil) then
           quads[mapdata.fg.data[y][x]] = spq(mapdata.fg.data[y][x])
         end
-        map.fg:add(quads[mapdata.fg.data[y][x]], x * 16, y * 16)
+        map.fg:add(quads[mapdata.fg.data[y][x]], (x - 1) * 32, (y - 1) * 32)
       end
     end
   end
