@@ -16,7 +16,7 @@ return function(can_save)
     [1] = {
       label = 'Save Game',
       action = function()
-        -- TODO
+        require('p3600.save_game')()
         p3600.state.menu_items[1].label = 'SAVED'
       end,
     },

@@ -26,8 +26,7 @@ return function()
 
     [1] = {
       label = 'Load Game',
-      action = function()
-      end,
+      action = require('p3600.main_menu.load_game'),
     },
 
     [2] = {

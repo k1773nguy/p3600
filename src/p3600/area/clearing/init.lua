@@ -7,6 +7,10 @@ return function(init) -- init is only true if called from intro
 
   p3600.gstate.entity[0].pos.area = 'clearing'
 
+  if (init) then
+    p3600.gstate.entity[1] = require('p3600.sp_entity.1')
+  end
+
   p3600.state = {
     map = require('p3600.display.make_map')(require('p3600.area.clearing.data')),
     rmbg = require('p3600.display.render_map_bg'),
@@ -14,6 +18,7 @@ return function(init) -- init is only true if called from intro
     re = require('p3600.display.render_entity'),
     k = require('p3600.reverse_aa')(p3600.kb.w),
     update_player = require('p3600.update_player'),
+    ue = require('p3600.update_entity'),
     changed = true,
     active_entities = require('p3600.get_entities_in_area')('clearing'),
   }
@@ -42,6 +47,9 @@ return function(init) -- init is only true if called from intro
 
   p3600.update = function(dt)
     p3600.state.update_player(dt)
+    for eid, v in pairs(p3600.state.active_entities) do
+      p3600.state.ue(eid, v, dt)
+    end
   end
 
   p3600.draw = function()
