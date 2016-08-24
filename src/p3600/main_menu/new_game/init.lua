@@ -53,7 +53,7 @@ return function()
               },
               dir = 1,
               lying = true,
-              can_move = false,
+              can_move = true,
             },
           },
         }

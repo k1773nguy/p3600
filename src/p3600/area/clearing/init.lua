@@ -41,7 +41,7 @@ return function(init) -- init is only true if called from intro
   end
 
   p3600.update = function(dt)
-    p3600.state.update_player()
+    p3600.state.update_player(dt)
   end
 
   p3600.draw = function()
