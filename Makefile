@@ -1,5 +1,6 @@
 all:
 
+CP     ?= cp
 MKDIR  ?= mkdir -p
 LUAJIT ?= luajit -O -bs
 ZIP    ?= zip -9 -u -v
@@ -9,6 +10,9 @@ files := $(patsubst src/%,p3600/%,$(shell find src -name "*.lua"))
 
 p3600/%.lua: src/%.lua $(dirs)
 	$(LUAJIT) $< $@
+
+p3600/conf.lua: src/conf.lua
+	$(CP) src/conf.lua p3600/conf.lua
 
 $(dirs):
 	$(MKDIR) $@
