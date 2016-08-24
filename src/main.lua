@@ -8,10 +8,14 @@ function love.load()
     t.modules = {}
     t.window = {}
     love.conf(t)
+
+    p3600.cfg = t.p3600
+
     p3600.kb = {
       w = t.p3600.keybinds.world,
       m = t.p3600.keybinds.menu,
     }
+    p3600.cfg.keybinds = nil
   end
 
   require('p3600.main_menu')()

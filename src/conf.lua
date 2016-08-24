@@ -1,5 +1,7 @@
 function love.conf(t)
   t.p3600 = {
+    invert_run = false,
+
     keybinds = {
       world = { -- only one of each
         ['w']      = 'up',
@@ -7,6 +9,7 @@ function love.conf(t)
         ['a']      = 'left',
         ['d']      = 'right',
         ['escape'] = 'pause',
+        ['lshift'] = 'run',
       },
 
       menu = { -- can have multiple

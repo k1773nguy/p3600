@@ -1,7 +1,24 @@
 return function(dt)
-  local speed = 0.05
-
   local pc = p3600.gstate.entity[0]
+
+  local speed
+  local frame_time
+
+  if (p3600.cfg.invert_run) then
+    speed = (0.05 * pc.speed_mod) * 2
+    frame_time = (speed * 6) / 2
+    if (love.keyboard.isDown(p3600.state.k['run'])) then
+      speed = speed / 2
+      frame_time = frame_time * 2
+    end
+  else
+    speed = 0.05 * pc.speed_mod
+    frame_time = speed * 6
+    if (love.keyboard.isDown(p3600.state.k['run'])) then
+      speed = speed * 2
+      frame_time = frame_time / 2
+    end
+  end
 
   local is_walking = false
   local just_started_walking = false
@@ -9,8 +26,8 @@ return function(dt)
   if (pc.can_move) then
     local function start_walking()
       pc.walking = {
-        frame = 0,
-        next_frame = 0.3,
+        frame = 1,
+        next_frame = (speed * 6),
       }
       just_started_walking = true
     end
@@ -92,14 +109,16 @@ return function(dt)
     if not (just_started_walking) then
       pc.walking.next_frame = pc.walking.next_frame - dt
       if (pc.walking.next_frame <= 0) then
-        pc.walking.next_frame = 0.3
+        pc.walking.next_frame = frame_time
         pc.walking.frame = pc.walking.frame + 1
         if (pc.walking.frame > 3) then
           pc.walking.frame = 0
         end
+        p3600.state.changed = true
       end
     end
   else
     pc.walking = nil
+    p3600.state.changed = true
   end
 end
