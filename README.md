@@ -29,3 +29,9 @@ Compiling the files is recommended because the output is smaller.
 ### If You Can't Run `make`
 Copy everything in the `src` directory to the `p3600` directory.
 
+
+What's With The Name?
+---------------------
+
+Everything else was taken?
+If someone thinks of a better name, let us know.
