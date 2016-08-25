@@ -53,8 +53,7 @@ return function()
               },
               speed_mod = 1,
               dir = 1,
-              can_move = true,
-              lying = true,
+              can_move = false,
             },
           },
         }
