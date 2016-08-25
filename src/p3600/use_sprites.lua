@@ -15,7 +15,7 @@ return function(eid)
 
       local ss
       if (eid == 0) then
-        local sn = '/save/'..p3600.gstate.entity[0].name..'/skin.tga'
+        local sn = '/save/'..p3600.gstate.entity[0].name..'/player.png'
         if (love.filesystem.exists(sn)) then
           ss = love.graphics.newImage(sn)
         else
