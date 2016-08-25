@@ -15,9 +15,14 @@ return function(eid)
 
       local ss
       if (eid == 0) then
-        ss = love.graphics.newImage('/data/spritesheet/r/'..
-                                    p3600.gstate.entity[eid].race..'/p/'..
-                                    p3600.gstate.entity[eid].sex..'.tga')
+        local sn = '/save/'..p3600.gstate.entity[0].name..'/skin.tga'
+        if (love.filesystem.exists(sn)) then
+          ss = love.graphics.newImage(sn)
+        else
+          ss = love.graphics.newImage('/data/spritesheet/r/'..
+                                      p3600.gstate.entity[eid].race..'/p/'..
+                                      p3600.gstate.entity[eid].sex..'.tga')
+        end
       elseif (p3600.gstate.entity[eid].special) then
         ss = require('p3600.sp_entity.'..eid..'.load_spritesheets')()
       else
