@@ -7,14 +7,14 @@ return function(dt)
   if (p3600.cfg.invert_run) then
     speed = (0.05 * pc.speed_mod) * 2
     frame_time = (speed * 6) / 2
-    if (love.keyboard.isDown(p3600.state.k['run'])) then
+    if (p3600.control_down('run')) then
       speed = speed / 2
       frame_time = frame_time * 2
     end
   else
     speed = 0.05 * pc.speed_mod
     frame_time = speed * 6
-    if (love.keyboard.isDown(p3600.state.k['run'])) then
+    if (p3600.control_down('run')) then
       speed = speed * 2
       frame_time = frame_time / 2
     end
@@ -32,10 +32,10 @@ return function(dt)
       just_started_walking = true
     end
 
-    if (love.keyboard.isDown(p3600.state.k['up'])) then
+    if (p3600.control_down('up')) then
       if (pc.pos.y > 0) then
-        if (love.keyboard.isDown(p3600.state.k['left'])) or
-           (love.keyboard.isDown(p3600.state.k['right']))
+        if (p3600.control_down('left')) or
+           (p3600.control_down('right'))
         then
           pc.pos.y = pc.pos.y - (speed / 2)
         else
@@ -50,10 +50,10 @@ return function(dt)
       end
     end
 
-    if (love.keyboard.isDown(p3600.state.k['down'])) then
+    if (p3600.control_down('down')) then
       if (pc.pos.y < p3600.state.map.height - 1) then
-        if (love.keyboard.isDown(p3600.state.k['left'])) or
-           (love.keyboard.isDown(p3600.state.k['right']))
+        if (p3600.control_down('left')) or
+           (p3600.control_down('right'))
         then
           pc.pos.y = pc.pos.y + (speed / 2)
         else
@@ -68,11 +68,11 @@ return function(dt)
       end
     end
 
-    if (love.keyboard.isDown(p3600.state.k['left'])) then
+    if (p3600.control_down('left')) then
       if (pc.pos.x > 0) then
         is_walking = true
-        if (love.keyboard.isDown(p3600.state.k['up'])) or
-           (love.keyboard.isDown(p3600.state.k['down']))
+        if (p3600.control_down('up')) or
+           (p3600.control_down('down'))
         then
           pc.pos.x = pc.pos.x - (speed / 2)
         else
@@ -86,11 +86,11 @@ return function(dt)
       end
     end
 
-    if (love.keyboard.isDown(p3600.state.k['right'])) then
+    if (p3600.control_down('right')) then
       if (pc.pos.x < p3600.state.map.width - 1) then
         is_walking = true
-        if (love.keyboard.isDown(p3600.state.k['up'])) or
-           (love.keyboard.isDown(p3600.state.k['down']))
+        if (p3600.control_down('up')) or
+           (p3600.control_down('down'))
         then
           pc.pos.x = pc.pos.x + (speed / 2)
         else

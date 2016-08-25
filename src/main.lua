@@ -1,12 +1,17 @@
 require 'p3600'
 
-function love.load()
+function love.run()
+  if love.math then
+    love.math.setRandomSeed(os.time())
+  end
+
   p3600.init()
 
   do
-    local t = {}
-    t.modules = {}
-    t.window = {}
+    local t = {
+      modules = {},
+      window = {},
+    }
     love.conf(t)
 
     p3600.cfg = t.p3600
@@ -16,25 +21,11 @@ function love.load()
       m = t.p3600.keybinds.menu,
     }
     p3600.cfg.keybinds = nil
+
+    require('p3600.main_menu')()
   end
 
-  require('p3600.main_menu')()
-end
-
-function love.run()
-  if love.math then
-    love.math.setRandomSeed(os.time())
-  end
-
-  if love.load then
-    love.load(arg)
-  end
-
-  if love.timer then
-    love.timer.step()
-  end
-
-  local dt = 0
+  love.timer.step()
 
   while true do
     if love.event then
@@ -49,30 +40,29 @@ function love.run()
       end
     end
 
-    if love.timer then
-      love.timer.step()
-      dt = love.timer.getDelta()
-    end
+    love.timer.step()
+    love.update(love.timer.getDelta())
 
-    if love.update then
-      love.update(dt)
-    end
-
-    if love.graphics and love.graphics.isActive() then
+    if (love.graphics.isActive()) then
       love.graphics.origin()
 
-      if love.draw then
-        love.draw()
-      end
+      love.draw()
 
       if (p3600.display.changed) then
-        love.graphics.present()
+        local a = true
+
+        if not (love.window == nil) then
+          a = love.window.isVisible()
+        end
+
+        if (a) then
+          love.graphics.present()
+        end
+
         p3600.display.changed = false
       end
     end
 
-    if love.timer then
-      love.timer.sleep(p3600.slowness)
-    end
+    love.timer.sleep(p3600.slowness)
   end
 end
