@@ -3,6 +3,14 @@ return {
     singular  = 'human',
     plural    = 'humans',
     adjective = 'human',
+    sexes = {
+      -- Pretty sure every human is born with genitalia.
+      [1] = true,
+      [2] = true,
+      -- A hermaphrodite looks like either a man or a woman until they take
+      -- their pants off, and this game doesn't let you take your pants off
+      -- yet, so...
+    },
 
     playable  = true,
     description = [[
@@ -16,6 +24,10 @@ Has the most potential, but starts off weak.]],
     singular  = 'dwarf',
     plural    = 'dwarves',
     adjective = 'dwarven',
+    sexes = {
+      [1] = true,
+      [2] = true, -- The ladies still have beards, don't worry.
+    },
 
     playable  = true,
     description = [[
@@ -35,6 +47,10 @@ Slow, hairy, and usually drunk.]],
     singular  = 'elf',
     plural    = 'elves',
     adjective = 'elven',
+    sexes = {
+      [1] = true,
+      [2] = true,
+    },
 
     playable  = true,
     description = [[
@@ -49,6 +65,10 @@ Tall, fast, weak, fragile.]],
     singular  = 'kobold',
     plural    = 'kobolds',
     adjective = 'small',
+    sexes = { -- I think..?
+      [1] = true,
+      [2] = true,
+    },
 
     playable  = true, -- joke
     description = [[
@@ -63,6 +83,10 @@ Tiny, cowardly, stealthy kleptomaniacs.]],
     singular  = 'bragasian',
     plural    = 'bragasians',
     adjective = 'bragasian',
+    sexes = {
+      [1] = true,
+      [2] = true,
+    },
 
     playable  = true,
     description = [[
@@ -81,6 +105,10 @@ Politicians hate them for some reason.]],
     singular  = 'fairy',
     plural    = 'fairies',
     adjective = 'fey',
+    sexes = {
+      [1] = true,
+      [2] = true,
+    },
 
     playable  = true,
     description = [[
@@ -102,12 +130,20 @@ They are infamous pranksters.]],
     singular  = 'faerie',
     plural    = 'faeries',
     adjective = 'fey',
+    sexes = {
+      [1] = true,
+      [2] = true,
+    },
   },
 
   [7] = {
     singular  = 'mamkute',
     plural    = 'mamkutes',
     adjective = 'draconic',
+    sexes = {
+      [1] = true,
+      [2] = true,
+    },
 
     playable  = true,
     description = [[
@@ -126,12 +162,20 @@ stones.]],
     singular  = 'dragon',
     plural    = 'dragons',
     adjective = 'draconic',
+    sexes = {
+      [1] = true,
+      [2] = true,
+    },
   },
 
   [9] = {
     singular  = 'kitsune',
     plural    = 'kitsunes',
     adjective = 'otherworldly',
+    sexes = {
+      [1] = true,
+      [2] = true,
+    },
 
     playable  = true,
     description = [[
@@ -149,12 +193,22 @@ Can turn into a fox.]],
     singular  = 'fox',
     plural    = 'foxes',
     adjective = 'vulpine',
+    sexes = {
+      [1] = true,
+      [2] = true,
+    },
   },
 
   [11] = {
     singular  = 'doppelganger',
     plural    = 'doppelgangers',
     adjective = 'strange',
+    sexes = { -- Or what they feel like being, anyway.
+      [0] = true,
+      [1] = true,
+      [2] = true,
+      [3] = true,
+    },
 
     playable  = true,
     description = [[
@@ -179,6 +233,10 @@ if they are discovered.]],
     singular  = 'goblin',
     plural    = 'goblins',
     adjective = 'ugly',
+    sexes = {
+      [1] = true,
+      [2] = true,
+    },
 
     playable  = true,
     description = [[
@@ -197,7 +255,9 @@ is a force to be reckoned with.]],
     singular  = 'incubus',
     plural    = 'incubi',
     adjective = 'demonic',
-    limit_sex = 1,
+    sexes = {
+      [1] = true,
+    },
 
     playable  = true,
     description = [[
@@ -220,7 +280,9 @@ The incubus is the male variant.]],
     singular  = 'succubus',
     plural    = 'succubi',
     adjective = 'demonic',
-    limit_sex = 2,
+    sexes = {
+      [2] = true,
+    },
 
     playable  = true,
     description = [[
@@ -243,7 +305,9 @@ The succubus is the female variant.]],
     singular  = 'omnibus',
     plural    = 'omnibi',
     adjective = 'demonic',
-    limit_sex = 3,
+    sexes = {
+      [3] = true,
+    },
 
     playable  = true,
     description = [[
@@ -266,13 +330,23 @@ The omnibus is the *ahem* "special" variant.]],
     singular  = 'elemental',
     plural    = 'elementals',
     adjective = 'primordial',
-    sexless   = true,
+    sexes = { -- They are formless, they can be whatever they want.
+      [0] = true,
+      [1] = true,
+      [2] = true,
+      [3] = true,
+    },
   },
 
   [17] = {
     singular  = 'diety',
     plural    = 'dieties',
     adjective = 'powerful',
-    sexless   = true,
+    sexes = {
+      [0] = true,
+      [1] = true,
+      [2] = true,
+      [3] = true,
+    },
   },
 }

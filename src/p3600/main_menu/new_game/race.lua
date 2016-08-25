@@ -35,6 +35,14 @@ return function()
 
       ['select'] = function()
         p3600.state_stack.state.race = p3600.state.race
+        while
+         not p3600.state.r[p3600.state.race].sexes[p3600.state_stack.state.sex]
+        do
+          p3600.state_stack.state.sex = p3600.state_stack.state.sex + 1
+          if (p3600.state_stack.state.sex > 3) then
+            p3600.state_stack.state.sex = 0
+          end
+        end
         p3600.pop_state()
       end,
 

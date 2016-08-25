@@ -7,6 +7,7 @@ return function()
       p3600.state.r = require('p3600.race')
       p3600.state.name = ''
       p3600.state.race = 0
+      p3600.state.sex = 1
     end,
 
     back = function()
@@ -33,11 +34,31 @@ return function()
       action = require('p3600.main_menu.new_game.race'),
     },
 
-    [2] = '',
+    [2] = {
+      label = function()
+        local t = {
+          [0] = 'n/a',
+          [1] = 'male',
+          [2] = 'female',
+          [3] = 'both',
+        }
+        return 'Sex: '..t[p3600.state.sex]
+      end,
+      action = function()
+        repeat
+          p3600.state.sex = p3600.state.sex + 1
+          if (p3600.state.sex > 3) then
+            p3600.state.sex = 0
+          end
+        until (p3600.state.r[p3600.state.race].sexes[p3600.state.sex])
+      end,
+    },
 
-    [3] = 'All done?',
+    [3] = '',
 
-    [4] = {
+    [4] = 'All done?',
+
+    [5] = {
       label = 'Wake up...',
       action = function()
         p3600.state_stack.state.new_game.start = true
@@ -61,7 +82,7 @@ return function()
       end,
     },
 
-    [5] = {
+    [6] = {
       label = 'Keep sleeping (abort)',
       action = function()
         p3600.pop_state()
