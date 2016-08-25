@@ -119,7 +119,7 @@ function p3600.control_down(id, nest)
     local h = love.graphics.getHeight()
     local w = love.graphics.getWidth()
 
-    if (love.touch == nil) then
+    if not (love.touch == nil) then
       local cx = w * 0.5
       local cy = h * 0.5
 
