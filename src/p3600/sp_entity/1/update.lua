@@ -1,9 +1,29 @@
 require 'p3600'
 
 return function(dt)
-  if (p3600.gstate.entity[1].progress.main == 0) then
-    p3600.gstate.entity[1].progress.main = 1
-    p3600.gstate.entity[0].can_move = true
-    require('p3600.sp_entity.1.dialog.init_clearing.0')()
+  local pc = p3600.gstate.entity[0]
+  local saoi = p3600.gstate.entity[1]
+
+  do
+    local s_main = {
+      [0] = function()
+        saoi.progress.main = 1
+        pc.can_move = true
+        require('p3600.sp_entity.1.dialog.init_clearing.0')()
+      end,
+
+      [1] = function()
+        saoi.progress.main = 2
+        saoi.following = 0
+        if (pc.followers == nil) then
+          pc.followers = {}
+        end
+        pc.followers[#pc.followers + 1] = 1
+      end,
+    }
+
+    if not (s_main[saoi.progress.main] == nil) then
+      s_main[saoi.progress.main]()
+    end
   end
 end
