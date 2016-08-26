@@ -5,7 +5,6 @@ return function(data)
   p3600.slowness = 0.1
 
   p3600.state = {
-    can_skip = data.can_skip,
     text = data.text,
     choices = data.choices,
     selection = 1,
@@ -38,15 +37,7 @@ return function(data)
         p3600.state.changed = true
         p3600.state.choices[p3600.state.selection].action()
       end,
-
-      ['back'] = function()
-        if (p3600.state.can_skip) then
-          require('p3600.display.end_dialog')()
-          p3600.pop_state()
-        end
-      end,
     }
-    tbl['left'] = tbl['back']
     tbl['right'] = tbl['select']
     if not (p3600.kb.m[key] == nil) then
       if not (tbl[p3600.kb.m[key]] == nil) then

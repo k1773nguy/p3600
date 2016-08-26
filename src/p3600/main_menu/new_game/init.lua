@@ -67,7 +67,7 @@ return function()
             [0] = {
               name = p3600.state.name,
               race = p3600.state.race,
-              sex = 1,
+              sex = p3600.state.sex,
               pos = {
                 x = 11,
                 y = 12,

@@ -293,3 +293,15 @@ function p3600.init()
   love.keyboard.setTextInput(false)
   p3600.init_state_stack()
 end
+
+
+function one_of(v, ...)
+  local l = select('#', ...)
+  for i = 1, l, 1 do
+    local n = select(i, ...)
+    if (v == n) then
+      return true
+    end
+  end
+  return false
+end
