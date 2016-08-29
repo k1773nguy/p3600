@@ -21,7 +21,7 @@ return function()
   }
 
   for i,f in pairs(files) do
-    m[i - 1] = {
+    m[i] = {
       label = f,
       action = load_file,
     }

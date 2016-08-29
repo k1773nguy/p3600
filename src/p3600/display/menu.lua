@@ -5,7 +5,7 @@ return function(items)
   love.keyboard.setTextInput(false)
 
   p3600.state = {
-    selection  = 0,
+    selection  = 1,
     menu_items = items,
     changed = true,
     onreturn = items.onreturn,
@@ -44,14 +44,14 @@ return function(items)
   p3600.keypressed = function(key)
     local tbl = {
       ['up'] = function()
-        if (p3600.state.selection > 0) then
+        if (p3600.state.selection > 1) then
           local prev_selection = p3600.state.selection
           p3600.state.changed = true
           repeat
             p3600.state.selection = p3600.state.selection - 1
           until ((type(p3600.state.menu_items[p3600.state.selection])
-                  == 'table') or (p3600.state.selection < 0))
-          if (p3600.state.selection < 0) then
+                  == 'table') or (p3600.state.selection < 1))
+          if (p3600.state.selection < 1) then
               p3600.state.changed = false
               p3600.state.selection = prev_selection
           end
@@ -107,32 +107,32 @@ return function(items)
       love.graphics.clear()
 
       love.graphics.setColor(255, 255, 255, 255)
-      for i = 0, #p3600.state.menu_items, 1 do
-        if not (type(p3600.state.menu_items[i]) == 'table') then
+      for i, e in ipairs(p3600.state.menu_items) do
+        if not (type(e) == 'table') then
           love.graphics.setColor(200, 200, 200, 255)
-          if (type(p3600.state.menu_items[i]) == 'function') then
-            p3600.state._p(17 + i, 1, p3600.state.menu_items[i]())
+          if (type(e) == 'function') then
+            p3600.state._p(17 + i, 1, e())
           else
-            p3600.state._p(17 + i, 1, p3600.state.menu_items[i])
+            p3600.state._p(17 + i, 1, e)
           end
           love.graphics.setColor(255, 255, 255, 255)
         else
           if (i == p3600.state.selection) then
             love.graphics.setColor(255, 0, 0, 255)
-            if (type(p3600.state.menu_items[i].label) == 'function') then
-              p3600.state._p(17 + i, 4, p3600.state.menu_items[i].label())
+            if (type(e.label) == 'function') then
+              p3600.state._p(17 + i, 4, e.label())
             else
-              p3600.state._p(17 + i, 4, p3600.state.menu_items[i].label)
+              p3600.state._p(17 + i, 4, e.label)
             end
             love.graphics.setColor(255, 255, 255, 255)
 
             love.graphics.draw(p3600.state._menu_cursor, 2 * 16,
                                (17 + i) * 16)
           else
-            if (type(p3600.state.menu_items[i].label) == 'function') then
-              p3600.state._p(17 + i, 4, p3600.state.menu_items[i].label())
+            if (type(e.label) == 'function') then
+              p3600.state._p(17 + i, 4, e.label())
             else
-              p3600.state._p(17 + i, 4, p3600.state.menu_items[i].label)
+              p3600.state._p(17 + i, 4, e.label)
             end
           end
         end

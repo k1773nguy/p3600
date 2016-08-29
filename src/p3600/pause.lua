@@ -6,14 +6,14 @@ return function(can_save)
       p3600.pop_state()
     end,
 
-    [0] = {
+    {
       label = 'Continue',
       action = function()
         p3600.pop_state()
       end,
     },
 
-    [1] = {
+    {
       label = 'Save Game',
       action = function()
         require('p3600.save_game')()
@@ -21,7 +21,7 @@ return function(can_save)
       end,
     },
 
-    [2] = {
+    {
       label = 'Quit',
       action = function()
         love.event.quit(0)
@@ -30,7 +30,7 @@ return function(can_save)
   }
 
   if not (can_save) then
-    i[1] = "Can't save here."
+    i[2] = "Can't save here."
   end
 
   p3600.push_state()

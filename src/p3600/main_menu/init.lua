@@ -19,17 +19,17 @@ return function()
       p3600.pop_state()
     end,
 
-    [0] = {
+    {
       label = 'New Game',
       action = require('p3600.main_menu.new_game'),
     },
 
-    [1] = {
+    {
       label = 'Load Game',
       action = require('p3600.main_menu.load_game'),
     },
 
-    [2] = {
+    {
       label = 'Exit',
       action = function()
         p3600.pop_state()

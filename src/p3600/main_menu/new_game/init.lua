@@ -14,7 +14,7 @@ return function()
       p3600.pop_state()
     end,
 
-    [0] = {
+    {
       label = function()
         return 'Name: '..p3600.state.name
       end,
@@ -27,14 +27,14 @@ return function()
       end,
     },
 
-    [1] = {
+    {
       label = function()
         return 'Race: '..p3600.state.r[p3600.state.race].singular
       end,
       action = require('p3600.main_menu.new_game.race'),
     },
 
-    [2] = {
+    {
       label = function()
         local t = {
           [0] = 'n/a',
@@ -54,11 +54,11 @@ return function()
       end,
     },
 
-    [3] = '',
+    '',
 
-    [4] = 'All done?',
+    'All done?',
 
-    [5] = {
+    {
       label = 'Wake up...',
       action = function()
         p3600.state_stack.state.new_game.start = true
@@ -82,7 +82,7 @@ return function()
       end,
     },
 
-    [6] = {
+    {
       label = 'Keep sleeping (abort)',
       action = function()
         p3600.pop_state()
