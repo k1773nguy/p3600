@@ -64,5 +64,6 @@ function love.run()
     end
 
     love.timer.sleep(p3600.slowness)
+    collectgarbage('step')
   end
 end

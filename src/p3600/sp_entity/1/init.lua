@@ -7,10 +7,11 @@ return {
   sex = 2,
   pos = {
     area = 'clearing',
-    x = 10,
-    y = 12,
+    x = 12,
+    y = 13,
   },
   speed_mod = 1,
+  can_move = true,
   dir = 3,
   progress = {
     main = 0,

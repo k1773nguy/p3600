@@ -14,7 +14,10 @@ return function(dt)
 
       [1] = function()
         saoi.progress.main = 2
-        saoi.following = 0
+        saoi.following = {
+          id = 0,
+          distance = 3,
+        }
         if (pc.followers == nil) then
           pc.followers = {}
         end

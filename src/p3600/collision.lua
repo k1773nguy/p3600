@@ -1,6 +1,27 @@
 require 'p3600'
 
 return function(_e)
+  do -- entities
+    local x = _e.pos.x
+    local y = _e.pos.y
+    local ae
+
+    if not (p3600.state.active_entities == nil) then
+      ae = p3600.state.active_entities
+    else
+      ae = require('p3600.get_entities_in_area')(entity.pos.area)
+    end
+
+    for i, e in pairs(ae) do
+      if not (e == _e) then
+        if (math.abs(y - e.pos.y) < 1) and (math.abs(x - e.pos.x) < 1) then
+          return 'obstacle'
+        end
+      end
+    end
+  end
+
+  -- map
   local f
   f = function(entity, recurse)
     local x = math.floor(entity.pos.x)
@@ -11,8 +32,8 @@ return function(_e)
     if (recurse == 0) then
       valid = true
     else
-      local x_inc = (math.floor(entity.pos.x + 32) > x)
-      local y_inc = (math.floor(entity.pos.y + 32) > y)
+      local x_inc = (math.floor(entity.pos.x + 0.9) > x)
+      local y_inc = (math.floor(entity.pos.y + 0.9) > y)
 
       if (recurse == 1) then
         if (x_inc) then
@@ -34,36 +55,16 @@ return function(_e)
     end
 
     if (valid) then
-      do -- entities
-        local ae
+      local tiletype
 
-        if not (p3600.state.active_entities == nil) then
-          ae = p3600.state.active_entities
-        else
-          ae = require('p3600.get_entities_in_area')(entity.pos.area)
-        end
-
-        for i, e in pairs(ae) do
-          if not (e == entity) then
-            if (y == math.floor(e.pos.y)) and (x == math.floor(e.pos.x)) then
-              return 'obstacle'
-            end
-          end
-        end
+      if not (p3600.state.map == nil) then
+        tiletype = p3600.state.map.tiletype
+      else
+        tiletype = require('p3600.area.'..entity.pos.area..'.data').tiletypes
       end
 
-      do -- map
-        local tiletype
-
-        if not (p3600.state.map == nil) then
-          tiletype = p3600.state.map.tiletype
-        else
-          tiletype = require('p3600.area.'..entity.pos.area..'.data').tiletypes
-        end
-
-        if (tiletype[y + 1][x + 1] == 1) then
-          return 'obstacle'
-        end
+      if (tiletype[y][x] == 1) then
+        return 'obstacle'
       end
     end
 

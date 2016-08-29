@@ -1,4 +1,5 @@
 return function(tbl)
+  local cycle_tbl = {}
   local format_tbl = {
     ['string'] = function(v)
       return '"'..v..'"'
@@ -7,6 +8,7 @@ return function(tbl)
 
   local printall
   printall = function(i, t)
+    cycle_tbl[t] = true
     for k,v in pairs(t) do
       local s = i
 
@@ -21,7 +23,11 @@ return function(tbl)
       print(s)
 
       if (type(v) == 'table') then
-        printall(i..'  ', v)
+        if not (cycle_tbl[v]) then
+          printall(i..'  ', v)
+        else
+          print(i..'  (cycle)')
+        end
       end
     end
   end

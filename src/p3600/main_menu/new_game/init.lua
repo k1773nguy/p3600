@@ -69,8 +69,8 @@ return function()
               race = p3600.state.race,
               sex = p3600.state.sex,
               pos = {
-                x = 11,
-                y = 12,
+                x = 13,
+                y = 13,
               },
               speed_mod = 1,
               dir = 1,
