@@ -12,7 +12,7 @@ return function()
     to_next_frame = 1.0,
     init_frame = function() -- declared here instead of every 0.01 seconds
       if (p3600.state.frame == 3) then
-        require('p3600.area.clearing')(true)
+        require('p3600.area')('clearing', true)
       else
         p3600.state.to_next_frame = 1.0
       end

@@ -1,4 +1,8 @@
 return function(entity)
+  if not ((entity.pos.x) and (entity.pos.y)) then
+    return
+  end
+
   local qy = entity.dir
   local qx = 0
 

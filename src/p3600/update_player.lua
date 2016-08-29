@@ -79,9 +79,7 @@ return function(dt)
 
       if (p3600.control_down('left')) then
         is_walking = true
-        if (p3600.control_down('up')) or
-           (p3600.control_down('down'))
-        then
+        if (p3600.control_down('up')) or (p3600.control_down('down')) then
           pc.pos.x = pc.pos.x - (speed / 2)
           if (require('p3600.collision')(pc) == 'obstacle') then
             pc.pos.x = pc.pos.x + (speed / 2)

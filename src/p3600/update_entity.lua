@@ -40,6 +40,7 @@ return function(eid, v, dt)
                                            math.floor(v.pos.y), fx, fy)
 
         v.following.prev = {
+          _no_save = true,
           dx = fx,
           dy = fy,
           p = path,

@@ -7,6 +7,7 @@ return function(mapdata)
     width = mapdata.width,
     height = mapdata.height,
     tiletype = mapdata.tiletypes,
+    exits = mapdata.exits,
   }
 
   do -- make background SpriteBatch

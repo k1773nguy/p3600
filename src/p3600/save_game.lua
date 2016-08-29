@@ -77,13 +77,15 @@ return function()
             s = s..key_format[type(k)](k)..' = '
 
             if (type(v) == 'table') then
-              f:write(s)
-              save_r(i..'  ', v)
+              if not (v._no_save) then
+                f:write(s)
+                save_r(i..'  ', v)
+                f:write(",\n")
+              end
             else
               f:write(s..value_format[type(v)](v))
+              f:write(",\n")
             end
-
-            f:write(",\n")
           end
         end
 
