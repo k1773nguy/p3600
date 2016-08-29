@@ -8,13 +8,6 @@ return function()
       }
     end,
 
-    onreturn = function()
-      if (p3600.state.new_game.start) then
-        p3600.init_state_stack()
-        require('p3600.transition.intro')()
-      end
-    end,
-
     back = function()
       p3600.pop_state()
     end,

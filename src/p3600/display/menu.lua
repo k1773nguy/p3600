@@ -111,28 +111,28 @@ return function(items)
         if not (type(e) == 'table') then
           love.graphics.setColor(200, 200, 200, 255)
           if (type(e) == 'function') then
-            p3600.state._p(17 + i, 1, e())
+            p3600.state._p(16 + i, 1, e())
           else
-            p3600.state._p(17 + i, 1, e)
+            p3600.state._p(16 + i, 1, e)
           end
           love.graphics.setColor(255, 255, 255, 255)
         else
           if (i == p3600.state.selection) then
             love.graphics.setColor(255, 0, 0, 255)
             if (type(e.label) == 'function') then
-              p3600.state._p(17 + i, 4, e.label())
+              p3600.state._p(16 + i, 4, e.label())
             else
-              p3600.state._p(17 + i, 4, e.label)
+              p3600.state._p(16 + i, 4, e.label)
             end
             love.graphics.setColor(255, 255, 255, 255)
 
             love.graphics.draw(p3600.state._menu_cursor, 2 * 16,
-                               (17 + i) * 16)
+                               (16 + i) * 16)
           else
             if (type(e.label) == 'function') then
-              p3600.state._p(17 + i, 4, e.label())
+              p3600.state._p(16 + i, 4, e.label())
             else
-              p3600.state._p(17 + i, 4, e.label)
+              p3600.state._p(16 + i, 4, e.label)
             end
           end
         end

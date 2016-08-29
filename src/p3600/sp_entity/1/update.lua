@@ -22,6 +22,7 @@ return function(dt)
           pc.followers = {}
         end
         pc.followers[#pc.followers + 1] = 1
+        require('p3600.save_game')()
       end,
     }
 

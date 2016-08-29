@@ -78,7 +78,8 @@ return function()
             },
           },
         }
-        p3600.pop_state()
+        p3600.init_state_stack()
+        require('p3600.transition.intro')()
       end,
     },
 
