@@ -17,6 +17,8 @@ C++, it is used instead of reinventing the wheel.
 Building
 --------
 
+Remember to run `git submodule init`. :wink:
+
 ### Recommended Method
 Run `make p3600.love`.
 
@@ -26,9 +28,6 @@ Run `make`.
 ### If You Don't Want The Files Compiled (for development, etc.)
 You can run `make LUAJIT=cp` to copy the lua files instead of compiling them.
 Compiling the files is recommended because the output is smaller.
-
-### If You Can't Run `make`
-Copy everything in the `src` directory to the `p3600` directory.
 
 
 What's With The Name?
