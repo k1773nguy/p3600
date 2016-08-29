@@ -24,6 +24,26 @@ return function(dt)
         pc.followers[#pc.followers + 1] = 1
         require('p3600.save_game')()
       end,
+
+      [2] = function()
+        if (p3600.gstate.entity[0].pos.x < 5) then
+          pc.can_move = false
+          saoi.following.distance = 1
+          saoi.progress.main = 3
+        end
+      end,
+
+      [3] = function()
+        if
+         (math.abs(saoi.pos.x - pc.pos.x) <= 1.2) and
+         (math.abs(saoi.pos.y - pc.pos.y) <= 1.2)
+        then
+          saoi.progress.main = 4
+          saoi.following.distance = 3
+          pc.can_move = true
+          require('p3600.sp_entity.1.dialog.init_weapon.0')()
+        end
+      end,
     }
 
     if not (s_main[saoi.progress.main] == nil) then
