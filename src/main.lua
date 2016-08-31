@@ -17,11 +17,16 @@ function love.run()
     p3600.cfg = t.p3600
 
     p3600.kb = {
+      e = t.p3600.keybinds.editor,
       w = t.p3600.keybinds.world,
       m = t.p3600.keybinds.menu,
     }
     p3600.cfg.keybinds = nil
+  end
 
+  if (arg[2] == 'editor') then
+    require('p3600.editor')(arg[3], true)
+  else
     require('p3600.main_menu')()
   end
 
