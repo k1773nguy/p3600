@@ -20,12 +20,26 @@ return function(name, arg)
     can_save = true,
   }
 
-  do
-    local pfx, pfy = require('p3600.area.'..name)(arg)
-    p3600.gstate.entity[0].pos.area = name
-    require('p3600.pull_followers')(0, pfx, pfy)
+  local prev_area = p3600.gstate.entity[0].pos.area
+  if not (prev_area == name) then
+    do
+      require('p3600.area.'..name)(arg)
+      p3600.gstate.entity[0].pos.area = name
+
+      local entrance = mapdata.entrances[prev_area]
+
+      if (entrance == nil) then
+        entrance = mapdata.entrances.default
+      end
+
+      p3600.gstate.entity[0].pos.x = entrance.player.x
+      p3600.gstate.entity[0].pos.y = entrance.player.y
+      require('p3600.pull_followers')(0, entrance.follower.x,
+                                      entrance.follower.y)
+    end
+
+    require('p3600.clean_other_areas')(name)
   end
-  require('p3600.clean_other_areas')(name)
 
   p3600.state.active_entities = require('p3600.get_entities_in_area')(name)
 

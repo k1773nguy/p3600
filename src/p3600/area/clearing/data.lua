@@ -83,4 +83,30 @@ return {
       },
     },
   },
+
+  entrances = {
+    ['forest1'] = {
+      player = {
+        x = 2,
+        y = 9,
+      },
+
+      follower = {
+        x = 2,
+        y = 10,
+      },
+    },
+
+    default = {
+      player = {
+        x = 13,
+        y = 13,
+      },
+
+      follower = {
+        x = 12,
+        y = 13,
+      },
+    },
+  },
 }

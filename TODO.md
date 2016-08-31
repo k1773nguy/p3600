@@ -1,0 +1,2 @@
+ - Make menus scrollable when there are too many items
+ - Procedurally generate certain areas, add them to save dir

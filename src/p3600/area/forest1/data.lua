@@ -83,4 +83,30 @@ return {
       },
     },
   },
+
+  entrances = {
+    ['clearing'] = {
+      player = {
+        x = 24,
+        y = 9,
+      },
+
+      follower = {
+        x = 24,
+        y = 10,
+      },
+    },
+
+    default = {
+      player = {
+        x = 24,
+        y = 9,
+      },
+
+      follower = {
+        x = 24,
+        y = 10,
+      },
+    },
+  },
 }
