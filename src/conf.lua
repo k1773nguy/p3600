@@ -1,5 +1,7 @@
 function love.conf(t)
   t.p3600 = {
+    developer = true,
+
     invert_run = false,
 
     keybinds = {
