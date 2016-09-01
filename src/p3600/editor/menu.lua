@@ -23,8 +23,41 @@ return function()
 
   m[#m + 1] = 'Map'
 
-  m[#m + 1] = '   Toggle foreground'
-  m[#m + 1] = '   Toggle background'
+  m[#m + 1] = {
+    action = function()
+      p3600.pop_state()
+      p3600.state.show_fg = not p3600.state.show_fg
+    end,
+  }
+  if (p3600.state.show_fg) then
+    m[#m].label = 'Hide foreground'
+  else
+    m[#m].label = 'Show foreground'
+  end
+
+  m[#m + 1] = {
+    action = function()
+      p3600.pop_state()
+      p3600.state.show_bg = not p3600.state.show_bg
+    end,
+  }
+  if (p3600.state.show_bg) then
+    m[#m].label = 'Hide background'
+  else
+    m[#m].label = 'Show background'
+  end
+
+  m[#m + 1] = {
+    action = function()
+      p3600.pop_state()
+      p3600.state.show_walls = not p3600.state.show_walls
+    end,
+  }
+  if (p3600.state.show_walls) then
+    m[#m].label = 'Hide walls'
+  else
+    m[#m].label = 'Show walls'
+  end
 
   m[#m + 1] = {
     label = 'Save',

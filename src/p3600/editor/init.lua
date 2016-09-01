@@ -7,11 +7,13 @@ return function(area_name, full)
     changed = true,
     map_changed = true,
     name = area_name,
+
     rmbg = require('p3600.display.render_map_bg'),
     rmfg = require('p3600.display.render_map_fg'),
 
     show_fg = true,
     show_bg = true,
+    show_walls = false,
 
     selection = {
       x = 1,
@@ -111,6 +113,19 @@ return function(area_name, full)
 
       if (p3600.state.show_fg) then
         p3600.state.rmfg(p3600.state.cached_map)
+      end
+
+      if (p3600.state.show_walls) then
+        for y, r in pairs(p3600.state.map.tiletypes) do
+          for x, v in pairs(r) do
+            if (v == 1) then
+              love.graphics.rectangle('line',
+                                      ((x - 1) * 32) + ((32 / 2) - (16 / 2)),
+                                      ((y - 1) * 32) + ((32 / 2) - (16 / 2)),
+                                      16, 16)
+            end
+          end
+        end
       end
 
       love.graphics.rectangle('line', (p3600.state.selection.x * 32) - 33,
