@@ -105,11 +105,11 @@ function love.conf(t)
   t.modules.graphics = true
   t.modules.image    = true
   t.modules.keyboard = true
+  t.modules.math     = true
   t.modules.timer    = true
 
   -- unused modules
   t.modules.audio    = false
-  t.modules.math     = false
   t.modules.physics  = false
   t.modules.sound    = false
   t.modules.system   = false

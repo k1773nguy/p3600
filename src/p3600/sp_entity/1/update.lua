@@ -23,6 +23,7 @@ return function(dt)
         end
         pc.followers[#pc.followers + 1] = 1
         require('p3600.save_game')()
+        love.filesystem.mount('/save/'..p3600.gstate.entity[0].name, '/', false)
       end,
 
       [2] = function()

@@ -72,20 +72,11 @@ return {
   },
 
   exits = {
-    [9] = {
-      [1] = {
-        name = 'forest1',
-      },
-    },
-    [10] =  {
-      [1] = {
-        name = 'forest1',
-      },
-    },
+    left = 'forest_1_1',
   },
 
   entrances = {
-    ['forest1'] = {
+    ['forest_1_1'] = {
       player = {
         x = 2,
         y = 9,

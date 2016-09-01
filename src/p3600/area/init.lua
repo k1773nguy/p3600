@@ -6,6 +6,10 @@ return function(name, arg)
   p3600.clear_love_callbacks()
   p3600.slowness = 0.01
 
+  if not (love.filesystem.exists('/p3600/area/'..name..'/data.lua')) then
+    require('p3600.area.generator')(name)
+  end
+
   local mapdata = require('p3600.area.'..name..'.data')
 
   p3600.state = {
@@ -23,7 +27,12 @@ return function(name, arg)
   local prev_area = p3600.gstate.entity[0].pos.area
   if not (prev_area == name) then
     do
-      require('p3600.area.'..name)(arg)
+      if
+       love.filesystem.exists('/p3600/area/'..name..'.lua') or
+       love.filesystem.exists('/p3600/area/'..name..'/init.lua')
+      then
+        require('p3600.area.'..name)(arg)
+      end
       p3600.gstate.entity[0].pos.area = name
 
       local entrance = mapdata.entrances[prev_area]
@@ -75,8 +84,23 @@ return function(name, arg)
        (p3600.state.map.exits[pcy]) and
        (p3600.state.map.exits[pcy][pcx])
       then
-        require('p3600.area')(p3600.state.map.exits[pcy][pcx].name)
-        return
+        return require('p3600.area')(p3600.state.map.exits[pcy][pcx])
+      end
+
+      if (p3600.state.map.exits.top) and (pcy <= 1) then
+        return require('p3600.area')(p3600.state.map.exits.top)
+      end
+
+      if (p3600.state.map.exits.left) and (pcx <= 1) then
+        return require('p3600.area')(p3600.state.map.exits.left)
+      end
+
+      if (p3600.state.map.exits.right) and (pcx >= p3600.state.map.width) then
+        return require('p3600.area')(p3600.state.map.exits.right)
+      end
+
+      if (p3600.state.map.exits.bottom) and (pcy >= p3600.state.map.height) then
+        return require('p3600.area')(p3600.state.map.exits.bottom)
       end
     end
     for eid, v in pairs(p3600.state.active_entities) do
