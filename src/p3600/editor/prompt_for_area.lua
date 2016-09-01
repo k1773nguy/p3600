@@ -56,7 +56,7 @@ return function()
         end
       end
       require('p3600.display.text_input')(5, 17, f, '',
-      {r = 0, b = 0, g = 0})
+                                          {r = 0, b = 0, g = 0})
     end
   end
 end

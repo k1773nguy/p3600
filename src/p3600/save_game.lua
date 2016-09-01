@@ -1,7 +1,3 @@
--- This was going to save stuff Minecraft-style,
--- where the files are written as they are changed.
--- That would have been extremely slow. (Like Minecraft...)
-
 require 'p3600'
 
 return function()
