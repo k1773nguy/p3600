@@ -11,6 +11,7 @@ return function(items)
     onreturn = items.onreturn,
     do_onreturn = false,
     back = items.back,
+    on_draw = items.draw,
     _p = require('p3600.display.print'),
   }
 
@@ -136,6 +137,10 @@ return function(items)
             end
           end
         end
+      end
+
+      if not (p3600.state.on_draw == nil) then
+        p3600.state.on_draw()
       end
 
       p3600.state.changed = false
