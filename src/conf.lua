@@ -2,32 +2,52 @@ function love.conf(t)
   t.p3600 = {
     developer = true,
 
-    invert_run = false,
+    invert_run = false, -- If true, hold the 'run' key to walk.
 
     keybinds = {
+      -- 'mouse1' is used for up/down/left/right depending on where the
+      -- cursor is. Do not bind it.
       world = {
         ['w']      = 'up',
-        ['s']      = 'down',
-        ['a']      = 'left',
-        ['d']      = 'right',
         ['up']     = 'up',
+        ['s']      = 'down',
         ['down']   = 'down',
+        ['a']      = 'left',
         ['left']   = 'left',
+        ['d']      = 'right',
         ['right']  = 'right',
+        ['space']  = 'interact',
         ['escape'] = 'pause',
         ['lshift'] = 'run',
         ['mouse2'] = 'run',
+        ['c']      = 'combat',
+      },
+
+      combat = {
+        ['w']      = 'up',
+        ['up']     = 'up',
+        ['s']      = 'down',
+        ['down']   = 'down',
+        ['a']      = 'left',
+        ['left']   = 'left',
+        ['d']      = 'right',
+        ['right']  = 'right',
+        ['space']  = 'attack',
+        ['escape'] = 'pause',
+        ['lshift'] = 'guard',
+        ['mouse2'] = 'guard',
+        ['c']      = 'end_combat',
       },
 
       menu = {
         ['up']     = 'up',
-        ['down']   = 'down',
-        ['left']   = 'left',
-        ['right']  = 'right',
         ['w']      = 'up',
-        ['d']      = 'right',
-        ['a']      = 'left',
+        ['down']   = 'down',
         ['s']      = 'down',
+        ['d']      = 'right',
+        ['right']  = 'right',
+        ['left']   = 'left',
+        ['a']      = 'left',
         ['return'] = 'select',
         ['mouse2'] = 'select',
         ['space']  = 'select',
