@@ -15,12 +15,12 @@ return function()
   m[#m + 1] = 'Tile'
 
   m[#m + 1] = {
-    label = 'Set foreground',
+    label = 'Set foreground (NYI)',
     action = p3600.pop_state,
   }
 
   m[#m + 1] = {
-    label = 'Set background',
+    label = 'Set background (NYI)',
     action = p3600.pop_state,
   }
 
