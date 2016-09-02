@@ -13,6 +13,21 @@ return function(eid)
     else
       p3600.sprite_refs[eid] = 1
 
+      do
+        es = {
+          _no_save = true,
+        }
+
+        for idx, item in ipairs(p3600.gstate.entity[eid].inventory.wearing) do
+          es[idx] = love.graphics.newImage('/data/spritesheet/r/'..
+                                           p3600.gstate.entity[eid].race..
+                                           '/equip/'..item.id..'/'..
+                                           p3600.gstate.entity[eid].sex..'.tga')
+        end
+
+        p3600.gstate.entity[eid].equip_sprites = es
+      end
+
       local ss
       if (eid == 0) then
         local sn = '/save/'..p3600.gstate.entity[0].name..'/player.png'

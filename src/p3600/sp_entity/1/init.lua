@@ -16,4 +16,12 @@ return {
   progress = {
     main = 0,
   },
+
+  inventory = {
+    wearing = {
+      {
+        id = 'sao_armor',
+      },
+    },
+  },
 }

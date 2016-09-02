@@ -49,8 +49,8 @@ return function(eid, v, dt)
 
       ::next_node::
       if not (path == nil) then
-        local vx = math.floor(v.pos.x)
-        local vy = math.floor(v.pos.y)
+        local vx = v.pos.x
+        local vy = v.pos.y
 
         if not ((vx == path[1].x) and (vy == path[1].y)) then
           delta_x = path[1].x - vx
@@ -82,38 +82,54 @@ return function(eid, v, dt)
 
     if (v.can_move) then
       if (delta_y < 0) then
-        if not (delta_x == 0) then
-          v.pos.y = v.pos.y - (speed / 2)
+        if (math.abs(delta_y) < speed) then
+          v.pos.y = v.pos.y + delta_y
         else
-          v.pos.y = v.pos.y - speed
+          if not (delta_x == 0) then
+            v.pos.y = v.pos.y - (speed / 2)
+          else
+            v.pos.y = v.pos.y - speed
+          end
+          v.dir = 2
         end
-        v.dir = 2
         p3600.state.changed = true
       elseif (delta_y > 0) then
-        if not (delta_x == 0) then
-          v.pos.y = v.pos.y + (speed / 2)
+        if (math.abs(delta_y) < speed) then
+          v.pos.y = v.pos.y + delta_y
         else
-          v.pos.y = v.pos.y + speed
+          if not (delta_x == 0) then
+            v.pos.y = v.pos.y + (speed / 2)
+          else
+            v.pos.y = v.pos.y + speed
+          end
+          v.dir = 0
         end
-        v.dir = 0
         p3600.state.changed = true
       end
 
       if (delta_x < 0) then
-        if not (delta_y == 0) then
-          v.pos.x = v.pos.x - (speed / 2)
+        if (math.abs(delta_x) < speed) then
+          v.pos.x = v.pos.x + delta_x
         else
-          v.pos.x = v.pos.x - speed
+          if not (delta_y == 0) then
+            v.pos.x = v.pos.x - (speed / 2)
+          else
+            v.pos.x = v.pos.x - speed
+          end
+          v.dir = 1
         end
-        v.dir = 1
         p3600.state.changed = true
       elseif (delta_x > 0) then
-        if not (delta_y == 0) then
-          v.pos.x = v.pos.x + (speed / 2)
+        if (math.abs(delta_x) < speed) then
+          v.pos.x = v.pos.x + delta_x
         else
-          v.pos.x = v.pos.x + speed
+          if not (delta_y == 0) then
+            v.pos.x = v.pos.x + (speed / 2)
+          else
+            v.pos.x = v.pos.x + speed
+          end
+          v.dir = 3
         end
-        v.dir = 3
         p3600.state.changed = true
       end
     end

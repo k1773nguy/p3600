@@ -20,4 +20,14 @@ return function(entity)
   love.graphics.draw(entity.spritesheet, entity.sprite_quad,
                      math.floor((entity.pos.x - 1) * 32),
                      math.floor((entity.pos.y - 1) * 32))
+
+  if not (entity.equip_sprites == nil) then
+    for i, s in ipairs(entity.equip_sprites) do
+      if not (i == '_no_save') then
+        love.graphics.draw(s, entity.sprite_quad,
+                           math.floor((entity.pos.x - 1) * 32),
+                           math.floor((entity.pos.y - 1) * 32))
+      end
+    end
+  end
 end

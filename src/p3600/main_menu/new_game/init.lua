@@ -68,6 +68,13 @@ return function()
               name = p3600.state.name,
               race = p3600.state.race,
               sex = p3600.state.sex,
+              inventory = {
+                wearing = {
+                  {
+                    id = 'tunic',
+                  },
+                },
+              },
               pos = {
                 x = 13,
                 y = 13,
