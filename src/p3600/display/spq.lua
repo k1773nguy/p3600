@@ -1,11 +1,11 @@
 --[[
 Returns a Quad for sprite (id) on a spritesheet.
-If a sprite takes up more than one index, specify (h) and (w).
+If a sprite takes up more than one index, specify (size).
 ]]
-return function(id, h, w)
-  h = h or 1
-  w = w or h
-  local row = math.floor(id / 32)
-  local col = id % 32
-  return love.graphics.newQuad(col * 32, row * 32, 32 * w, 32 * h, 256, 256)
+return function(id, size)
+  size = size or 1
+  local row = math.floor(id / 8)
+  local col = id % 8
+  return love.graphics.newQuad(col * 32, row * 32, 32 * size, 32 * size, 256,
+                               256)
 end

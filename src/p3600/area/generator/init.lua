@@ -54,7 +54,6 @@ return function(name)
          (love.math.noise(x, y) < (params.features.trees.density or 0.3))
         then
           fg[y][x] = ids[math.random(#ids)]
-          bg[y][x] = 0
           tiletypes[y][x] = 1
         end
       end
@@ -65,7 +64,6 @@ return function(name)
     for x = 1, params.width, 1 do
       tiletypes[1][x] = 1
       fg[1][x] = params.wall_ids[math.random(#params.wall_ids)]
-      bg[1][x] = 0
     end
   end
 
@@ -73,7 +71,6 @@ return function(name)
     for x = 1, params.width, 1 do
       tiletypes[params.height][x] = 1
       fg[params.height][x] = params.wall_ids[math.random(#params.wall_ids)]
-      bg[params.height][x] = 0
     end
   end
 
@@ -81,7 +78,6 @@ return function(name)
     for y = 1, params.height, 1 do
       tiletypes[y][1] = 1
       fg[y][1] = params.wall_ids[math.random(#params.wall_ids)]
-      bg[y][1] = 0
     end
   end
 
@@ -89,7 +85,6 @@ return function(name)
     for y = 1, params.height, 1 do
       tiletypes[y][params.width] = 1
       fg[y][params.width] = params.wall_ids[math.random(#params.wall_ids)]
-      bg[y][params.width] = 0
     end
   end
 
@@ -99,7 +94,6 @@ return function(name)
         if (v) then
           tiletypes[y][x] = 0
           fg[y][x] = 0
-          bg[y][x] = params.floor_ids[math.random(#params.floor_ids)]
         end
       end
     end
