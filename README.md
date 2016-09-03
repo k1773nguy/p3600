@@ -17,7 +17,7 @@ C++, it is used instead of reinventing the wheel.
 Building
 --------
 
-Remember to run `git submodule init`. :wink:
+Remember to run `git submodule update`. :wink:
 
 ### Recommended Method
 Run `make p3600.love`.
