@@ -1,0 +1,3 @@
+Requiring the level data seems wasteful anyway.
+`loadfile` should be used instead.
+  -- bcnjr5
