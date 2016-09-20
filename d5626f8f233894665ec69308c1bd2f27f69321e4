@@ -1,0 +1,4 @@
+The current math for converting pixels to tiles is `t* = (p* / 16) + 1`,
+this does not work well. Additionally, there appears to be a bug in
+tiled where Y-coordinates are off by 16.
+  -- bcnjr5
