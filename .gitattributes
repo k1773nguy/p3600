@@ -1,0 +1,7 @@
+# vim: noet ts=12
+*.lua	text	diff=lua
+*.md	text	diff=markdown
+*.png	binary
+Makefile	text	diff=make
+
+/src/main.lua	ident

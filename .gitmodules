@@ -1,0 +1,3 @@
+[submodule "libs/engine"]
+	path = libs/engine
+	url = git://github.com/bcnjr5/p3600-engine.git
