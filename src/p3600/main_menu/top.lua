@@ -9,22 +9,18 @@ return function()
   end
 
   menu{
-    init = function()
-      game.state.new_game = {
-        start = false,
-      }
-    end,
-
     back = exit,
 
     {
       label = 'New Game',
-      --action = require('p3600.main_menu.new_game'),
-      action = exit,
+      action = function()
+        game.push_state()
+        require('p3600.main_menu.new_game')()
+      end,
     },
 
     {
-      label = 'Load Game',
+      label = 'Load Game (NYI)',
       --action = require('p3600.main_menu.load_game'),
       action = exit,
     },

@@ -1,5 +1,7 @@
 function love.conf(t)
   t.game = {
+    version = 'none', -- Configuration version.
+
     invert_run = false, -- If true, hold the 'run' key to walk.
 
     -- TODO: add seperate defaults for Dvorak layouts
