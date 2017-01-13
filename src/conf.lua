@@ -4,71 +4,8 @@ function love.conf(t)
 
     invert_run = false, -- If true, hold the 'run' key to walk.
 
-    -- TODO: add seperate defaults for Dvorak layouts
-    keybinds = {
-      world = {
-        press = {
-          ['c']      = 'combat',      -- Enter combat mode
-          ['space']  = 'interact',    -- Interact with something
-          ['e']      = 'inventory',   -- Open inventory
-          ['escape'] = 'pause',       -- Pause the game
-          ['pause']  = 'pause',
-          ['x']      = 'toggle_slow', -- Move at half speed for more control
-        },
-
-        hold = {
-          ['w']      = 'up',    -- Move up
-          ['up']     = 'up',
-          ['s']      = 'down',  -- Move down
-          ['down']   = 'down',
-          ['a']      = 'left',  -- Move left
-          ['left']   = 'left',
-          ['d']      = 'right', -- Move right
-          ['right']  = 'right',
-          ['lshift'] = 'run',   -- Move a little faster
-        },
-      },
-
-      combat = {
-        press = {
-          ['space']  = 'attack',      -- Use your weapon
-          ['escape'] = 'pause',       -- Pause the game
-          ['c']      = 'end_combat',  -- Exit combat mode
-          ['x']      = 'toggle_slow', -- Move at half speed for more control
-        },
-
-        hold = {
-          ['w']      = 'up',    -- Move up
-          ['up']     = 'up',
-          ['s']      = 'down',  -- Move down
-          ['down']   = 'down',
-          ['a']      = 'left',  -- Move left
-          ['left']   = 'left',
-          ['d']      = 'right', -- Move right
-          ['right']  = 'right',
-          ['lshift'] = 'guard', -- Take up a defensive stance
-        },
-      },
-
-      menu = {
-        ['up']      = 'up',     -- Cursor up
-        ['w']       = 'up',
-        ['kp8']     = 'up',
-        ['down']    = 'down',   -- Cursor down
-        ['s']       = 'down',
-        ['kp2']     = 'down',
-        ['left']    = 'left',   -- Cursor left
-        ['a']       = 'left',
-        ['kp4']     = 'left',
-        ['right']   = 'right',  -- Cursor right
-        ['d']       = 'right',
-        ['kp6']     = 'right',
-        ['return']  = 'select', -- Do something
-        ['space']   = 'select',
-        ['escape']  = 'back',   -- If allowed, leave the menu
-        ['appback'] = 'back',
-      },
-    },
+    -- Can be set to anything in that directory.
+    keybinds = require('default_keybinds.pc_qwerty'),
   }
 
   t.console = false                   -- Attach a console (boolean, Windows only)
