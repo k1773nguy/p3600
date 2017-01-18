@@ -30,12 +30,12 @@ ZIP ?= zip -9 -u -v
 
 files := $(patsubst src/%,p3600/%,$(shell find src -name "*.lua"))
 files += $(patsubst src/%,p3600/%,$(shell find src -name "*.glsl"))
-files += $(patsubst src/%,p3600/%,$(shell find src -name "*.png"))
+files += $(patsubst src/%,p3600/%,$(shell find src -name "*.tgf"))
 dirs := $(patsubst src/%,p3600/%,$(shell find src -type d))
 
 # Engine
 files += $(patsubst libs/engine/engine/%,p3600/%,$(shell find libs/engine/engine -name "*.lua"))
-files += $(patsubst libs/engine/engine/%,p3600/%,$(shell find libs/engine/engine -name "*.png"))
+files += $(patsubst libs/engine/engine/%,p3600/%,$(shell find libs/engine/engine -name "*.tgf"))
 dirs += $(patsubst libs/engine/engine/%,p3600/%,$(shell find libs/engine/engine -type d))
 
 files := $(sort $(files))
@@ -55,7 +55,7 @@ p3600/%.lua: src/%.lua $$(@D)
 p3600/%.glsl: src/%.glsl $$(@D)
 	$(CP) $< $@
 
-p3600/%.png: src/%.png $$(@D)
+p3600/%.tgf: src/%.tgf $$(@D)
 	$(CP) $< $@
 
 
@@ -65,7 +65,7 @@ p3600/%.png: src/%.png $$(@D)
 p3600/%.lua: libs/engine/engine/%.lua $$(@D)
 	$(LUAJIT) $< $@
 
-p3600/%.png: libs/engine/engine/%.png $$(@D)
+p3600/%.tgf: libs/engine/engine/%.tgf $$(@D)
 	$(CP) $< $@
 
 
